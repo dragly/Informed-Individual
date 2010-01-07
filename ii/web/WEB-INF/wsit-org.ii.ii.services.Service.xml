@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="ServiceService" targetNamespace="http://services.ii.ii.org/" xmlns:tns="http://services.ii.ii.org/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sc="http://schemas.sun.com/2006/03/wss/server" xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy" xmlns:wsp1="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsaw="http://www.w3.org/2005/08/addressing" xmlns:fi="http://java.sun.com/xml/ns/wsit/2006/09/policy/fastinfoset/service" xmlns:tcp="http://java.sun.com/xml/ns/wsit/2006/09/policy/soaptcp/service" xmlns:sp1="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"
+ >
+    <message name="getOpinion"/>
+    <message name="getOpinionResponse"/>
+    <message name="OpinionFromLogin"/>
+    <message name="OpinionFromLoginResponse"/>
+    <message name="RegisterLogins"/>
+    <message name="RegisterLoginsResponse"/>
+    <message name="SearchLogins"/>
+    <message name="SearchLoginsResponse"/>
+    <message name="AddOpinion"/>
+    <message name="AddOpinionResponse"/>
+    <message name="Register"/>
+    <message name="RegisterResponse"/>
+    <message name="Authenticate"/>
+    <message name="AuthenticateResponse"/>
+    <message name="opinionFromLogin"/>
+    <message name="opinionFromLoginResponse"/>
+    <message name="registerLogins"/>
+    <message name="registerLoginsResponse"/>
+    <message name="searchLogins"/>
+    <message name="searchLoginsResponse"/>
+    <message name="addOpinion"/>
+    <message name="addOpinionResponse"/>
+    <message name="register"/>
+    <message name="registerResponse"/>
+    <message name="authenticate"/>
+    <message name="authenticateResponse"/>
+    <message name="isAuthenticated"/>
+    <message name="isAuthenticatedResponse"/>
+    <portType name="Service">
+        <operation name="getOpinion">
+            <input message="tns:getOpinion"/>
+            <output message="tns:getOpinionResponse"/>
+        </operation>
+        <operation name="OpinionFromLogin">
+            <input message="tns:OpinionFromLogin"/>
+            <output message="tns:OpinionFromLoginResponse"/>
+        </operation>
+        <operation name="RegisterLogins">
+            <input message="tns:RegisterLogins"/>
+            <output message="tns:RegisterLoginsResponse"/>
+        </operation>
+        <operation name="SearchLogins">
+            <input message="tns:SearchLogins"/>
+            <output message="tns:SearchLoginsResponse"/>
+        </operation>
+        <operation name="AddOpinion">
+            <input message="tns:AddOpinion"/>
+            <output message="tns:AddOpinionResponse"/>
+        </operation>
+        <operation name="Register">
+            <input message="tns:Register"/>
+            <output message="tns:RegisterResponse"/>
+        </operation>
+        <operation name="Authenticate">
+            <input message="tns:Authenticate"/>
+            <output message="tns:AuthenticateResponse"/>
+        </operation>
+        <operation name="opinionFromLogin">
+            <input message="tns:opinionFromLogin"/>
+            <output message="tns:opinionFromLoginResponse"/>
+        </operation>
+        <operation name="registerLogins">
+            <input message="tns:registerLogins"/>
+            <output message="tns:registerLoginsResponse"/>
+        </operation>
+        <operation name="searchLogins">
+            <input message="tns:searchLogins"/>
+            <output message="tns:searchLoginsResponse"/>
+        </operation>
+        <operation name="addOpinion">
+            <input message="tns:addOpinion"/>
+            <output message="tns:addOpinionResponse"/>
+        </operation>
+        <operation name="register">
+            <input message="tns:register"/>
+            <output message="tns:registerResponse"/>
+        </operation>
+        <operation name="authenticate">
+            <input message="tns:authenticate"/>
+            <output message="tns:authenticateResponse"/>
+        </operation>
+        <operation name="isAuthenticated">
+            <input message="tns:isAuthenticated"/>
+            <output message="tns:isAuthenticatedResponse"/>
+        </operation>
+    </portType>
+    <binding name="ServicePortBinding" type="tns:Service">
+        <wsp1:PolicyReference URI="#ServicePortBindingPolicy"/>
+        <operation name="getOpinion">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="OpinionFromLogin">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="RegisterLogins">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="SearchLogins">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="AddOpinion">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="Register">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="Authenticate">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="opinionFromLogin">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+            <fault/>
+            <fault/>
+            <fault/>
+        </operation>
+        <operation name="registerLogins">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+            <fault/>
+        </operation>
+        <operation name="searchLogins">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+            <fault/>
+        </operation>
+        <operation name="addOpinion">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="register">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="authenticate">
+            <input>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Input_Policy"/>
+            </input>
+            <output>
+                <wsp1:PolicyReference URI="#ServicePortBinding_getOpinion_Output_Policy"/>
+            </output>
+        </operation>
+        <operation name="isAuthenticated">
+            <input>
+                <wsp:PolicyReference URI="#ServicePortBinding_isAuthenticated_Input_Policy"/>
+            </input>
+            <output>
+                <wsp:PolicyReference URI="#ServicePortBinding_isAuthenticated_Output_Policy"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ServiceService">
+        <port name="ServicePort" binding="tns:ServicePortBinding"/>
+    </service>
+    <wsp1:Policy wsu:Id="ServicePortBindingPolicy">
+        <wsp1:ExactlyOne>
+            <wsp1:All>
+                <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp1:Optional="false"/>
+                <sp1:SymmetricBinding>
+                    <wsp1:Policy>
+                        <sp1:ProtectionToken>
+                            <wsp1:Policy>
+                                <sp1:X509Token sp1:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                                    <wsp1:Policy>
+                                        <sp1:WssX509V3Token10/>
+                                        <sp1:RequireIssuerSerialReference/>
+                                    </wsp1:Policy>
+                                </sp1:X509Token>
+                            </wsp1:Policy>
+                        </sp1:ProtectionToken>
+                        <sp1:Layout>
+                            <wsp1:Policy>
+                                <sp1:Strict/>
+                            </wsp1:Policy>
+                        </sp1:Layout>
+                        <sp1:IncludeTimestamp/>
+                        <sp1:OnlySignEntireHeadersAndBody/>
+                        <sp1:AlgorithmSuite>
+                            <wsp1:Policy>
+                                <sp1:Basic128Sha256/>
+                            </wsp1:Policy>
+                        </sp1:AlgorithmSuite>
+                    </wsp1:Policy>
+                </sp1:SymmetricBinding>
+                <sp1:Wss11>
+                    <wsp1:Policy>
+                        <sp1:MustSupportRefIssuerSerial/>
+                        <sp1:MustSupportRefThumbprint/>
+                        <sp1:MustSupportRefEncryptedKey/>
+                    </wsp1:Policy>
+                </sp1:Wss11>
+                <sp1:SignedSupportingTokens>
+                    <wsp1:Policy>
+                        <sp1:UsernameToken sp1:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                            <wsp1:Policy>
+                                <sp1:WssUsernameToken10/>
+                            </wsp1:Policy>
+                        </sp1:UsernameToken>
+                    </wsp1:Policy>
+                </sp1:SignedSupportingTokens>
+                <sc:KeyStore wspp:visibility="private" location="/home/svenni/glassfish-v3-prelude/glassfish/domains/domain1/config/keystore.jks" type="JKS" storepass="changeit" alias="xws-security-server"/>
+            </wsp1:All>
+        </wsp1:ExactlyOne>
+    </wsp1:Policy>
+    <wsp1:Policy wsu:Id="ServicePortBinding_getOpinion_Input_Policy">
+        <wsp1:ExactlyOne>
+            <wsp1:All>
+                <sp1:EncryptedParts>
+                    <sp1:Body/>
+                </sp1:EncryptedParts>
+                <sp1:SignedParts>
+                    <sp1:Body/>
+                    <sp1:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                    <sp1:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                    <sp1:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                    <sp1:Header Name="CreateSequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                </sp1:SignedParts>
+            </wsp1:All>
+        </wsp1:ExactlyOne>
+    </wsp1:Policy>
+    <wsp1:Policy wsu:Id="ServicePortBinding_getOpinion_Output_Policy">
+        <wsp1:ExactlyOne>
+            <wsp1:All>
+                <sp1:EncryptedParts>
+                    <sp1:Body/>
+                </sp1:EncryptedParts>
+                <sp1:SignedParts>
+                    <sp1:Body/>
+                    <sp1:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp1:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                    <sp1:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                    <sp1:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                    <sp1:Header Name="CreateSequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm"/>
+                </sp1:SignedParts>
+            </wsp1:All>
+        </wsp1:ExactlyOne>
+    </wsp1:Policy>
+    <wsp:Policy wsu:Id="ServicePortBinding_isAuthenticated_Input_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                    <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Body/>
+                    <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="ServicePortBinding_isAuthenticated_Output_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                    <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Body/>
+                    <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+                    <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                    <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</definitions>
+
+
+

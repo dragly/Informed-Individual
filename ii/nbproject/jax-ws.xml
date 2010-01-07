@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="Service">
+      <implementation-class>org.ii.ii.services.Service</implementation-class>
+    </service>
+    <service name="Test">
+      <implementation-class>org.ii.ii.services.Test</implementation-class>
+    </service>
+  </services>
+  <clients/>
+  <jsr109>false</jsr109>
+</jax-ws>
