@@ -51,3 +51,4 @@ class ResultHandler(BaseHandler):
 			result = Result(network=network, product=product, score=sum, active=True)
 			result.save()
 			return result
+		#	return {"Kake":"Bake", "sake":{"lake":"kake","make":{"fake":"take"}}} # custom return
