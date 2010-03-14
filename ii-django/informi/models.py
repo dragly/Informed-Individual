@@ -1,48 +1,70 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 """
-A product is something one may have opinions about.
+An identifier is something one may have opinions about. It could be an URL, a barcode etc.
 """
-class Product(models.Model):
+class Identifier(models.Model):
+	type = models.CharField(max_length=200)
+	data = models.TextField()
+	def __unicode__(self):
+		return self.type + " [" + self.data + "]"
+"""
+An Entity is something that is defined. An Entity may have many Identifiers, and to connect these, we use Connections.
+"""
+class Entity(models.Model):
 	name = models.CharField(max_length=200)
-	description = models.CharField(max_length=200)
-	eancode = models.CharField(max_length=200)
+	description = models.TextField()
 	def __unicode__(self):
-		return self.name + " [" + self.eancode + "]"
+		return self.name
 """
-A login is a user, but "User" is a bad table name.
-"""
-class Login(models.Model):
-	email = models.CharField(max_length=200)
-	password = models.CharField(max_length=200)
-	displayname = models.CharField(max_length=200)
-	def __unicode__(self):
-		return self.email
-	#trusts = models.ManyToManyField(Trust)
-	#opinions = models.ManyToManyField(Opinion)
+A Connection gives the relation between an Entity and an Identifier.
+For instance: The barcode 12345 is for Nuke Cola. Thus, an identifier with
+type "EAN" and data "12345" would have connections to Nuke Cola (the product)
+and Nuke (the company). Nuke Cola would as well have a connection to Nuke (the company).
 
+NOTE: This model is subject to future changes.
 """
-Opinions are given about products by logins.
+class Connection(models.Model):
+    entity = models.ForeignKey(Entity)
+    identifier = models.ForeignKey(Identifier)
+    affection = models.FloatField() # how much an opinion about the entity or identifier should affect the other (not in use yet)
+    description = models.CharField(max_length=200) # just a string which says in short how these are related
+    # NOTE: The affection should maybe be removed and replaced by the score an opinion gives about an connection
+    def __unicode__(self):
+        return self.identifier.__unicode__() + " => " + self.entity.__unicode__()
+"""
+A user is a user, but "User" is a bad table name.
+"""
+class UserProfile(models.Model):
+#	email = models.CharField(max_length=200)
+#	password = models.CharField(max_length=200)
+	displayname = models.CharField(max_length=200)
+	user = models.ForeignKey(User, unique=True)
+	def __unicode__(self):
+		return self.displayname
+"""
+Opinions are given about identifiers by users.
 """
 class Opinion(models.Model):
 	score = models.FloatField()
 	description = models.TextField()
-	product = models.ForeignKey(Product)
-	login = models.ForeignKey(Login)
+	identifier = models.ForeignKey(Identifier)
+	user = models.ForeignKey(User)
 	def __unicode__(self):
-		return self.login.__unicode__() + " - " + self.product.__unicode__()
+		return self.user.__unicode__() + " - " + self.identifier.__unicode__()
 """
-A trustnetwork may exist independent or dependent to a login.
-This makes it possible to get opinions about a product without creating a login.
+A trustnetwork may exist independent or dependent to a user.
+This makes it possible to get Opinions about Identifiers without creating a Login.
 """
 class TrustNetwork(models.Model):
-	login = models.ForeignKey(Login)
-	active = models.BooleanField() # active is true if this is the newest network for a login
-#logins = models.ManyToManyField(Login)
+	user = models.ForeignKey(User)
+	active = models.BooleanField() # active is true if this is the newest network for a user
+#users = models.ManyToManyField(Login)
 	def __unicode__(self):
-		return self.login.__unicode__()
+		return self.user.__unicode__()
 
 """
 A TrustNetwork consists of TrustNodes as a kind of ManyToMany mapping table.
@@ -50,17 +72,18 @@ It is created into an own table in case each node should have certain properties
 such as how much it's trusted.
 """
 class TrustNode(models.Model):
-	login = models.ForeignKey(Login)
+	user = models.ForeignKey(User)
 	network = models.ForeignKey(TrustNetwork)
+	score = models.FloatField(default=0)
 	def __unicode__(self):
-		return self.login.__unicode__() + " in " + self.network.__unicode__()
+		return self.user.__unicode__() + " in " + self.network.__unicode__()
 """
-The result is a calculated object telling the user what his/hers network thinks about a product
+The result is a calculated object telling the user what his/hers network thinks about an Identifier
 """
 class Result(models.Model):
 	score = models.FloatField()
-	product = models.ForeignKey(Product)
+	identifier = models.ForeignKey(Identifier)
 	network = models.ForeignKey(TrustNetwork)
 	active = models.BooleanField() # active is true if this is the most recent generated result
 	def __unicode__(self):
-		return "Score: " + str(self.score) + ", " + self.product.__unicode__() + " " + self.network.__unicode__() + ", active: " + str(self.active)
+		return "Score: " + str(self.score) + ", " + self.identifier.__unicode__() + " " + self.network.__unicode__() + ", active: " + str(self.active)

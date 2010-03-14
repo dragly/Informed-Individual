@@ -11,3 +11,7 @@ def detail(request, login_id):
 	data = serializers.serialize("xml", Login.objects.all())
 	return HttpResponse(data);
 	#return HttpResponse("You're looking at  %s." % login_id)
+	
+def oauth_callback(request, other):
+    html = "<html><body><p>The application is now. Type the following verification code into your application:<br/><input type=text value=\"%s\" /></body></html>" % other.verifier
+    return HttpResponse(html)
