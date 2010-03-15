@@ -28,8 +28,8 @@ class OpinionHandler(BaseHandler):
 			print "Looking up: ", identifierType, " = ", identifierData
 			identifiers = Identifier.objects.filter(type=identifierType, data=identifierData)
 			if identifiers.count() > 0:
-			    opinion = Opinion.objects.filter(identifier=identifiers[0], user=request.user)
-			    return opinion
+			    opinions = Opinion.objects.filter(identifier=identifiers[0], user=request.user)
+			    return opinions[0]
 			else:
 			    return {"error" : "Identifier not found"}
                     else:
@@ -48,7 +48,7 @@ class OpinionHandler(BaseHandler):
 		    identifierType = request.POST.get("identifier_type")
 		    identifierData = request.POST.get("identifier_data")
 		    identifiers = Identifier.objects.filter(type=identifierType, data=identifierData)
-		    if identifiers.count() < 1: # if this is a new identifier, create it
+		    if identifiers.count() == 0: # if this is a new identifier, create it
 			identifier = Identifier(type=identifierType, data=identifierData)
 			identifier.save()
 		    else:
@@ -165,20 +165,24 @@ class ResultHandler(BaseHandler):
         model = Result
         fields = ("score",)
         allowed_methods = ('GET','PUT',)
-        def read(self, request, identifier_type=None, identifier_data=None):
+        def read(self, request, method=None, param=None):
                 print "-- in ResultHandler.read --"
+                identifier_type = request.GET.get("identifier_type")
+                identifier_data = request.GET.get("identifier_data")
+                print identifier_data
+                print identifier_data.encode('iso8859-1')
                 if identifier_type == None or identifier_data == None:
                         return {"error" : "No identifier defined"}
                 else:
-#                        try:
-#                                result = Result.objects.get(network=network_id, identifier=identifier_id)
-#                        except Result.DoesNotExist:
                         if request.user.is_authenticated():
                             allopinions = []
                             opinionList = []
-                            identifiers = Identifier.objects.filter(type=identifier_type, data=identifier_data)
-			    
-                            identifier = identifiers[0]
+			    identifiers = Identifier.objects.filter(type=identifier_type,data=identifier_data)
+			    if identifiers.count() < 1:
+				identifier = Identifier(type=identifier_type, data=identifier_data)
+				identifier.save()
+			    else:
+				identifier = identifiers[0]
                             sum = 0.0
                             i = 0.0
                             opinions = Opinion.objects.filter(identifier=identifier)
@@ -263,10 +267,8 @@ class TrustNodeHandler(BaseHandler):
     model = TrustNode
     fields = ('user','score',)
     def create(self, request, method=None, param=None):
-	for key in request.META:
-	    print "Metaobject: ", key, ":", request.META[key]
 	if request.META.get("HTTP_X_HTTP_METHOD_OVERRIDE") == "DELETE":
-	    return remove(self, request, method, param)
+	    return self.remove(request, method, param)
 	user_id = request.POST.get("user_id")
 	score = request.POST.get("score")
 	networks = request.user.trustnetwork_set.filter(active=True)
@@ -287,7 +289,7 @@ class TrustNodeHandler(BaseHandler):
 	trustnode.save()
 	return trustnode
     def delete(self, request, method=None, param=None):
-	return remove(self, request, method, param)
+	return self.remove(request, method, param)
     def remove(self, request, method=None, param=None):
 	user_id = param
 	user = User.objects.get(pk=user_id)
